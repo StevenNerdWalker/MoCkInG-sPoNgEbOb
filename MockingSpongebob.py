@@ -52,7 +52,7 @@ def alternating_caps(input_string: str, begin_lower: bool = True):
     return new_str
 
 
-def mocking_caps(input_string: str, max_equal_case: int, only_count_letters: bool = True):
+def mocking_caps(input_string: str, max_equal_case: int = 3, only_count_letters: bool = True):
     """Takes a string and returns a string with the letters randomly varying between upper and lowercase while avoiding too many letters in a row with the same case.
     max_equal_case determines the maximum number of consecutive characters that are allowed to be in the same case, in order to feel more organic and random.
     only_count_letters determines if letters are the only characters considered for max_equal_case, or if it also counts spaces, commas, and other characters."""
