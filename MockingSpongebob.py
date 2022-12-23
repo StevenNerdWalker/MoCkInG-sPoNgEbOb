@@ -60,8 +60,7 @@ def mocking_caps(input_string: str, max_equal_case: int, only_count_letters: boo
     lower_alphabet = get_lower_alphabet()
     input_string = input_string.lower()
     new_str = ''
-    # keep track of the new string but with only the letters to check if it hit the limit
-    new_str_only_letters = ''
+    new_str_only_letters = ''   # keep track of the new string but with only the letters to check if it hit the limit
 
     # loop through the characters
     for i in range(len(input_string)):
@@ -72,57 +71,32 @@ def mocking_caps(input_string: str, max_equal_case: int, only_count_letters: boo
             new_str += char
             continue
 
-        # considering only letters, not all characters
-        if only_count_letters:
-            if len(new_str_only_letters) >= max_equal_case:  # there are enough letters for there to be max_equal_case consecutive characters in the same case
-                end_chars = new_str_only_letters[-max_equal_case:]
+        # set the string to be considered
+        if only_count_letters:  # considering only letters, not all characters
+            str_to_consider = new_str_only_letters
+        else:                   # considering all characters
+            str_to_consider = new_str
 
-                if end_chars.lower() == end_chars:  # the last max_equal_case characters were all lowercase
-                    new_str += char.upper()
-                    new_str_only_letters += char.upper()
+        if len(str_to_consider) >= max_equal_case:  # there are enough letters for there to be max_equal_case consecutive characters in the same case
+            end_chars = str_to_consider[-max_equal_case:]
 
-                elif end_chars.upper() == end_chars:    # the last max_equal_case characters were all uppercase
-                    new_str += char.lower()
-                    new_str_only_letters += char.lower()
+            if end_chars.lower() == end_chars:      # the last max_equal_case characters were all lowercase
+                new_str += char.upper()
+                new_str_only_letters += char.upper()
 
-                else:
-                    char = random.choice([char.lower(), char.upper()])
-                    new_str += char
-                    new_str_only_letters += char
+            elif end_chars.upper() == end_chars:    # the last max_equal_case characters were all uppercase
+                new_str += char.lower()
+                new_str_only_letters += char.lower()
 
-            else:   # there arent enough letters
+            else:
                 char = random.choice([char.lower(), char.upper()])
                 new_str += char
                 new_str_only_letters += char
 
-        # considering all characters
-        else:
-            if len(new_str) >= max_equal_case:  # there are enough letters for there to be max_equal_case consecutive characters in the same case
-                end_chars = new_str[-max_equal_case:]
-
-                if end_chars.lower() == end_chars:  # the last max_equal_case characters were all lowercase
-                    new_str += char.upper()
-                    new_str_only_letters += char.upper()
-
-                elif end_chars.upper() == end_chars:    # the last max_equal_case characters were all uppercase
-                    new_str += char.lower()
-                    new_str_only_letters += char.lower()
-
-                else:
-                    char = random.choice([char.lower(), char.upper()])
-                    new_str += char
-                    new_str_only_letters += char
-
-            else:   # there arent enough letters
-                char = random.choice([char.lower(), char.upper()])
-                new_str += char
-                new_str_only_letters += char
+        else:   # there arent enough letters
+            char = random.choice([char.lower(), char.upper()])
+            new_str += char
+            new_str_only_letters += char
 
     return new_str
 
-
-# todo improve mocking_caps to reduce the code and avoid repetition
-mae = 'ainda tem muita coisa pra acontecer até lá, meu filho'
-print(random_caps(mae))
-print(alternating_caps(mae))
-print(mocking_caps(mae, 5))
