@@ -6,30 +6,30 @@ def get_lower_alphabet():
             'á', 'à', 'ã', 'â', 'é', 'ê', 'í', 'ó', 'ô', 'ú'}
 
 
-def random_caps(input: str):
+def random_caps(input_string: str):
     """"Takes a string and returns a string with the characters randomly alternating between upper and lowercase."""
-    input = input.lower
+    input_string = input_string.lower()
     new_str = ''
-    for char in input:
+    for char in input_string:
         char = random.choice([char, char.upper()])
         new_str += char
 
     return new_str
 
 
-def alternating_caps(input: str, begin_lower: bool = True):
+def alternating_caps(input_string: str, begin_lower: bool = True):
     """Takes a string and returns a string with the characters alternating between uppercase and lowercase, only taking letters into consideration, not other characters.
     If begin_lower is True, the first letter will be lowercase, the second uppercase, and so on.
     If begin_lower is False, the first letter will be uppercase and so on."""
 
     lower_alphabet = get_lower_alphabet()
 
-    input = input.lower()
+    input_string = input_string.lower()
     new_str = ''
     even_letter = True
 
-    for i in range(len(input)):
-        char = input[i]
+    for i in range(len(input_string)):
+        char = input_string[i]
 
         if char not in lower_alphabet:
             new_str += char
@@ -52,20 +52,20 @@ def alternating_caps(input: str, begin_lower: bool = True):
     return new_str
 
 
-def mocking_caps(input: str, max_equal_case: int, only_count_letters: bool = True):
+def mocking_caps(input_string: str, max_equal_case: int, only_count_letters: bool = True):
     """Takes a string and returns a string with the letters randomly varying between upper and lowercase while avoiding too many letters in a row with the same case.
     max_equal_case determines the maximum number of consecutive characters that are allowed to be in the same case, in order to feel more organic and random.
     only_count_letters determines if letters are the only characters considered for max_equal_case, or if it also counts spaces, commas, and other characters."""
     
     lower_alphabet = get_lower_alphabet()
-    input = input.lower()
+    input_string = input_string.lower()
     new_str = ''
     # keep track of the new string but with only the letters to check if it hit the limit
     new_str_only_letters = ''
 
     # loop through the characters
-    for i in range(len(input)):
-        char = input[i]
+    for i in range(len(input_string)):
+        char = input_string[i]
 
         # character isnt a letter
         if char not in lower_alphabet:
@@ -123,5 +123,6 @@ def mocking_caps(input: str, max_equal_case: int, only_count_letters: bool = Tru
 
 # todo improve mocking_caps to reduce the code and avoid repetition
 mae = 'ainda tem muita coisa pra acontecer até lá, meu filho'
+print(random_caps(mae))
 print(alternating_caps(mae))
 print(mocking_caps(mae, 5))
