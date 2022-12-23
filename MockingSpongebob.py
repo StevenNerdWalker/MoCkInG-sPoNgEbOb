@@ -3,7 +3,7 @@ import random
 
 def get_lower_alphabet():
     return {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 
-            'á', 'à', 'ã', 'â', 'é', 'ê', 'í', 'ó', 'ô', 'ú'}
+            'á', 'à', 'ã', 'â', 'é', 'ê', 'í', 'ó', 'ô', 'ú', 'ç'}
 
 
 def random_caps(input_string: str):
