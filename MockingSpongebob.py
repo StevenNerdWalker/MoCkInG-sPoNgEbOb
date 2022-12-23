@@ -6,7 +6,18 @@ def get_lower_alphabet():
             'á', 'à', 'ã', 'â', 'é', 'ê', 'í', 'ó', 'ô', 'ú'}
 
 
-def alternating_caps(input: str, begin_lower: bool = True) -> str:
+def random_caps(input: str):
+    """"Takes a string and returns a string with the characters randomly alternating between upper and lowercase."""
+    input = input.lower
+    new_str = ''
+    for char in input:
+        char = random.choice([char, char.upper()])
+        new_str += char
+
+    return new_str
+
+
+def alternating_caps(input: str, begin_lower: bool = True):
     """Takes a string and returns a string with the characters alternating between uppercase and lowercase, only taking letters into consideration, not other characters.
     If begin_lower is True, the first letter will be lowercase, the second uppercase, and so on.
     If begin_lower is False, the first letter will be uppercase and so on."""
